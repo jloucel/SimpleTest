@@ -10,7 +10,8 @@ import org.openqa.selenium.WebDriver;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class LoginPageTest {
+public class LoginPageTests {
+
 private WebDriver driver = DriverFactory.getManager(DriverType.FIREFOX);;
 private String url = "https://login.solutionreach.com/";
 private LoginPage loginPage = new LoginPage(driver);
@@ -21,15 +22,13 @@ private final String expectedUsernameAlertMessage = "Please enter a username";
 private final String expectedPasswordAlertMessage = "Please enter a password";
 
     @Before
-    public void beforeEach(){
-
+    public void beforeEach() {
         driver.get(url);
         assertTrue("Expected " + url + " but found " + driver.getCurrentUrl(), driver.getCurrentUrl().equals(url));
     }
 
     @Test
     public void usernameRequiredErrorDisplayed() {
-
         loginPage.typePassword("badPass");
         loginPage.clickSignInButton();
 
@@ -41,7 +40,6 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
 
     @Test
     public void passwordReqiredErrorDisplayed() {
-
         loginPage.typeUsername("badUser");
         loginPage.clickSignInButton();
 
@@ -53,7 +51,6 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
 
     @Test
     public void usernameAndPasswordReqiredErrorDisplayed() {
-
         loginPage.clickSignInButton();
 
         assertTrue("Expected " + expectedErrorMessage + " but found " + loginPage.getErrorContainerMessage(),
@@ -66,7 +63,6 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
 
     @After
     public void afterEach() {
-
         driver.close();
     }
 }

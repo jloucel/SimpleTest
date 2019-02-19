@@ -4,7 +4,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
 public class DriverFactory {
 
     public static WebDriver getManager(DriverType type) {
@@ -13,7 +12,6 @@ public class DriverFactory {
 
         switch (type) {
             case CHROME:
-
                 System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver");
                 driver = new ChromeDriver();
                 break;
@@ -24,8 +22,6 @@ public class DriverFactory {
             default:
                 break;
         }
-
         return driver;
-
     }
 }

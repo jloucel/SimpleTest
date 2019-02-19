@@ -47,7 +47,7 @@ public class LoginPage {
     // ****Constructor**** //
 
 
-    public LoginPage(WebDriver webDriver){
+    public LoginPage(WebDriver webDriver) {
         this.driver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
@@ -77,31 +77,28 @@ public class LoginPage {
     public String getUserErrorMessage() {
         String errMsg = "";
 
-        for(WebElement e : loginValidationErrors){
+        for(WebElement e : loginValidationErrors) {
             String msg = e.getText();
             if(msg.contains("username")) {
                 errMsg = msg;
             }
         }
-
         return errMsg;
     }
 
     public String getPasswordErrorMessage() {
         String errMsg = "";
 
-        for(WebElement e : loginValidationErrors){
+        for(WebElement e : loginValidationErrors) {
             String msg = e.getText();
             if(msg.contains("password")) {
                 errMsg = msg;
             }
         }
-
         return errMsg;
     }
-    
+
     public String getErrorContainerMessage() {
         return errorContianter.findElement(By.tagName("P")).getText();
     }
-
 }
