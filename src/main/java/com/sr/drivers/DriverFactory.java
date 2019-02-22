@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
-    public static WebDriver getManager(DriverType type) {
+    public static WebDriver getDriver(DriverType type) {
 
         WebDriver driver = null;
 

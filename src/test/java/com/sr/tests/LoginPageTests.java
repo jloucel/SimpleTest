@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class LoginPageTests {
 
-private WebDriver driver = DriverFactory.getManager(DriverType.FIREFOX);;
+private WebDriver driver = DriverFactory.getDriver(DriverType.CHROME);;
 private String url = "https://login.solutionreach.com/";
 private LoginPage loginPage = new LoginPage(driver);
 
@@ -24,7 +24,8 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
     @Before
     public void beforeEach() {
         driver.get(url);
-        assertTrue("Expected " + url + " but found " + driver.getCurrentUrl(), driver.getCurrentUrl().equals(url));
+//        assertTrue("Expected " + url + " but found " + driver.getCurrentUrl(), driver.getCurrentUrl().equals(url));
+        assertEquals(driver.getCurrentUrl(),url);
     }
 
     @Test
@@ -32,10 +33,8 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
         loginPage.typePassword("badPass");
         loginPage.clickSignInButton();
 
-        assertTrue("Expected " + expectedErrorMessage + " but found " + loginPage.getErrorContainerMessage(),
-                loginPage.getErrorContainerMessage().equals(expectedErrorMessage));
-        assertTrue("Expected " + expectedUsernameAlertMessage + " but found " + loginPage.getUserErrorMessage(),
-                loginPage.getUserErrorMessage().equals(expectedUsernameAlertMessage));
+        assertEquals(loginPage.getErrorContainerMessage(), expectedErrorMessage);
+        assertEquals(loginPage.getUserErrorMessage(), expectedUsernameAlertMessage);
     }
 
     @Test
@@ -43,22 +42,17 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
         loginPage.typeUsername("badUser");
         loginPage.clickSignInButton();
 
-        assertTrue("Expected " + expectedErrorMessage + " but found " + loginPage.getErrorContainerMessage(),
-                loginPage.getErrorContainerMessage().equals(expectedErrorMessage));
-        assertTrue("Expected " + expectedPasswordAlertMessage + " but found " + loginPage.getPasswordErrorMessage(),
-                loginPage.getPasswordErrorMessage().equals(expectedPasswordAlertMessage));
+        assertEquals(loginPage.getErrorContainerMessage(), expectedErrorMessage);
+        assertEquals(loginPage.getPasswordErrorMessage(), expectedPasswordAlertMessage);
     }
 
     @Test
     public void usernameAndPasswordReqiredErrorDisplayed() {
         loginPage.clickSignInButton();
 
-        assertTrue("Expected " + expectedErrorMessage + " but found " + loginPage.getErrorContainerMessage(),
-                loginPage.getErrorContainerMessage().equals(expectedErrorMessage));
-        assertTrue("Expected " + expectedUsernameAlertMessage + " but found " + loginPage.getUserErrorMessage(),
-                loginPage.getUserErrorMessage().equals(expectedUsernameAlertMessage));
-        assertTrue("Expected " + expectedPasswordAlertMessage + " but found " + loginPage.getPasswordErrorMessage(),
-                loginPage.getPasswordErrorMessage().equals(expectedPasswordAlertMessage));
+        assertEquals(loginPage.getErrorContainerMessage(), expectedErrorMessage);
+        assertEquals(loginPage.getUserErrorMessage(), expectedUsernameAlertMessage);
+        assertEquals(loginPage.getPasswordErrorMessage(), expectedPasswordAlertMessage);
     }
 
     @After
