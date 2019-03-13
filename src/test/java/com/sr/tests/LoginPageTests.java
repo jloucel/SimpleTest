@@ -24,7 +24,6 @@ private final String expectedPasswordAlertMessage = "Please enter a password";
     @Before
     public void beforeEach() {
         driver.get(url);
-//        assertTrue("Expected " + url + " but found " + driver.getCurrentUrl(), driver.getCurrentUrl().equals(url));
         assertEquals(driver.getCurrentUrl(),url);
     }
 
